@@ -1,0 +1,142 @@
+#version=DEVEL
+# System authorization information
+auth --enableshadow --passalgo=sha512
+
+# Source intallation media
+install
+#url --url http://205.153.31.172/centos/7/os/x86_64
+#url --url="http://205.153.31.172/centos/7/os/x86_64"
+url --url="http://vault.centos.org/7.4.1708/os/x86_64/"
+# Use graphical install
+text
+
+# Run the Setup Agent on first boot
+firstboot --enable
+#ignoredisk --only-use=sda
+ignoredisk --only-use=sdb,sda
+
+# Keyboard layouts
+keyboard --vckeymap=us --xlayouts='us'
+
+# System language
+lang en_US.UTF-8
+
+# Network information
+network  --bootproto=static --device=eno1 --gateway=10.10.1.254 --ip=10.10.1.252 --nameserver=205.153.31.6, --netmask=255.255.255.0 --activate
+network  --hostname=Americopy-001.inframax.ncare
+
+# Root password
+rootpw --iscrypted $6$3t0WZfXSz/x7STQa$.UXWN7W8xgj3.wf4X7e6UiOPMRGkKm9jhfLSmIspZ9eQlAUrG.1GWEzqvABtn.kS4rPcQAfbZJXX8jJV55clm/
+
+# System services
+services --enabled="chronyd"
+
+# Do not configure the X Window System
+skipx
+
+# System timezone
+timezone America/New_York --isUtc
+
+# System bootloader configuration
+bootloader --append=" crashkernel=auto" --location=mbr --boot-drive=sdb
+
+# Partition clearing information
+#clearpart --initlabel --list=sdb1,sdb2
+clearpart --all
+
+# Disk partitioning information
+part /boot --fstype="xfs" --ondisk=sdb --size=953 --label=boot
+part pv.1221 --fstype="lvmpv" --ondisk=sdb --size=69889
+volgroup centos00 --pesize=4096 pv.1221
+logvol swap  --fstype="swap" --size=22204 --name=swap --vgname=centos00
+logvol /  --fstype="xfs" --size=47683 --label="root" --name=root --vgname=centos00
+
+%packages
+@^minimal
+@compat-libraries
+@core
+@debugging
+@development
+@security-tools
+chrony
+kexec-tools
+keyutils
+fipscheck
+yum-priorities
+screen
+net-snmp
+net-snmp-utils
+gmp
+libgomp
+ntp
+sysstat
+mc
+wget
+curl
+net-tools
+lsof
+vim
+dnsmasq
+nmap
+telnet
+bind-utils
+
+%end
+
+%addon com_redhat_kdump --enable --reserve-mb='auto'
+
+%end
+
+%anaconda
+pwpolicy root --minlen=6 --minquality=1 --notstrict --nochanges --notempty
+pwpolicy user --minlen=6 --minquality=1 --notstrict --nochanges --emptyok
+pwpolicy luks --minlen=6 --minquality=1 --notstrict --nochanges --notempty
+%end
+
+# XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+%post --log=/root/post-install.log
+# *** BEGIN COMMON SECTION
+
+yum clean all
+
+yum update -y
+
+# Updates IPMI
+cd /root
+wget http://205.153.31.172/centos/custom/IPMICFG-Linux_v1.20.zip
+unzip -u /root/IPMICFG-Linux_v1.20.zip
+cd IPMICFG-Linux_v1.20
+unzip -u IPMICFG-Linux_v1.20_build091228.zip
+cd IPMICFG-Linux_v1.20_build091228
+chmod 755 ipmicfg-linux.x86_64
+
+
+
+# *** END COMMON SECTION
+
+
+#  *** BEGIN ATOM SECTION
+#  *** BEGIN - DISABLE / ENABLE DAEMONS
+systemctl disable firewalld
+#systemctl disable kdump
+#systemctl enable ntpd
+systemctl enable fstrim
+#systemctl enable dnsmasq && systemctl start dnsmasq
+#  *** END - DISABLE / ENABLE DAEMONS
+
+cat > /etc/resolv.conf << EOF
+nameserver 205.153.31.6
+nameserver 205.153.31.7
+EOF
+
+#  *** END ATOM SECTION
+
+############################################################################
+# this should be loaded by SALT
+# END
+###########################################################################
+
+
+reboot
+%end

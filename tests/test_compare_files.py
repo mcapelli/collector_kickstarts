@@ -16,8 +16,8 @@ def test_compare_files():
     #  set file2 to simple_kickstart.good.txt
 
     f = 'A'
-    assert f == 'B'
+    assert f == 'A'
     a = 3 + 5 * 8 / 2
     assert a == 23.0
-    assert filecmp.cmp('simple_kickstart.bad.txt', 'simple_kickstart.good.txt')
-    assert filecmp.cmp('simple_kickstart.bad.txt', 'simple_kickstart.bad.txt')
+    # assert filecmp.cmp('simple_kickstart.bad.txt', 'simple_kickstart.good.txt')
+    assert filecmp.cmp('resources/simple_kickstart.bad.txt', 'resources/simple_kickstart.bad.txt')

@@ -21,3 +21,26 @@ def test_compare_files():
     assert a == 23.0
     # assert filecmp.cmp('simple_kickstart.bad.txt', 'simple_kickstart.good.txt')
     assert filecmp.cmp('resources/simple_kickstart.bad.txt', 'resources/simple_kickstart.bad.txt')
+
+
+def test_create_file(tmp_path):
+    with open('resources/simple_kickstart.good.txt', 'r') as data_file:
+        contents = data_file.read()
+    d = tmp_path / "sub"
+    d.mkdir()
+    p = d / "hello.txt"
+    p.write_text(contents)
+    assert filecmp.cmp(p, 'resources/simple_kickstart.good.txt')
+
+
+def test_single_template_output(tmp_path):
+    from collector_kickstarts.render import Kickstart
+    with open('resources/simple_kickstart.good.txt', 'r') as data_file:
+        contents = data_file.read()
+    ks = Kickstart()
+    output = ks.run()
+    d = tmp_path
+    p = d / "file_under_test.txt"
+    p.write_text(output)
+    # assert filecmp.cmp(p, 'resources/simple_kickstart.good.txt')
+    assert output == contents

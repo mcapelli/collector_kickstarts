@@ -1,7 +1,6 @@
 from click.testing import CliRunner
 
 from collector_kickstarts.cli import main
-import filecmp
 
 
 def test_main():

@@ -1,4 +1,4 @@
-from typing import List, Any
+from typing import List, Dict, Any
 
 
 class FileUtility(object):
@@ -10,6 +10,7 @@ class FileUtility(object):
     inline with the attribute's declaration (see __init__ method below).
 
     """
+    csv_data: List[Dict[str, str]]
     file_path: str
     file_string: str
     file_list_of_lines: List[str]
@@ -22,6 +23,7 @@ class FileUtility(object):
         self.file_string = None
         self.file_list_of_lines = None
         self.yaml_data_object = None
+        self.csv_data = None
 
     def get_yaml(self):
         """load yaml data from file and return it
@@ -56,3 +58,19 @@ class FileUtility(object):
                 lines = stream.readlines()
             self.file_list_of_lines = lines
         return self.file_list_of_lines
+
+    def get_csv_data(self):
+        """return data from a csv file
+
+        The data format will be a list of dictionaries. each list item represents a csv ros and the row data is a
+        dictionary where the key is the column header and the value is the cell data
+
+
+        """
+        if not self.csv_data:
+            import csv
+            with open(self.file_path, 'r') as stream:
+                csv_data = [{k: v for k, v in row.items()}
+                            for row in csv.DictReader(stream, skipinitialspace=True)]
+            self.csv_data = csv_data
+        return self.csv_data

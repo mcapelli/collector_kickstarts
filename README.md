@@ -1,5 +1,7 @@
-collector_kickstarts
+#collector_kickstarts
 
- - [ ] import filecmp and use it to compare files
- - [ ] use pytest tmp directory fixture
+
+we have a good single file render, next steps
+ - flesh out the render variables
+ - build a run method that loops through a list of dicts and puts files in some settable output directory
  

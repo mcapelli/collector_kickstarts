@@ -13,18 +13,6 @@ def test_main():
     assert result.exit_code == 0
 
 
-# TODO: import and use filecmp
-def test_compare_files():
-    #  set file1 to simple_kickstart.bad.txt
-
-    #  set file2 to simple_kickstart.good.txt
-
-    f = 'A'
-    assert f == 'A'
-    a = 3 + 5 * 8 / 2
-    assert a == 32
-
-
 def test_create_file(tmp_path):
     d = tmp_path /" sub"
     d.mkdir()

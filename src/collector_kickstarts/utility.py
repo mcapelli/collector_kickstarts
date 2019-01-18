@@ -23,11 +23,6 @@ class FileUtility(object):
         self.file_list_of_lines = None
         self.yaml_data_object = None
 
-    @staticmethod
-    def get_cwd() -> str:
-        import os
-        return os.getcwd()
-
     def get_yaml(self):
         """load yaml data from file and return it
 

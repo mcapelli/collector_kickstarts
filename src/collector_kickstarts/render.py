@@ -13,19 +13,17 @@ class Kickstart(object):
         self.kwargs = {}
         self.kwargs.update(kwargs)
 
-    def run(self):
-        #Import necessary functions from Jinja2 module
-        from jinja2 import Environment, FileSystemLoader
+    @staticmethod
+    def render_template_from_dict(template_data=None) -> str:
+        """Given a dict, render the template and return as string
 
-        #Import YAML module
-        import yaml
+        Note that PackageLoader lets me put the template in src and from the template in the package after install
+        """
+        from jinja2 import Environment, PackageLoader
 
-        #Load data from YAML into Python dictionary
-        config_data = yaml.load(open('resources/yaml_data.yml'))
+        env = Environment(loader=PackageLoader('collector_kickstarts', 'templates'),
+                          trim_blocks=True, lstrip_blocks=True)
+        template = env.get_template('kickstart_template.txt')
 
-        #Load Jinja2 template
-        env = Environment(loader = FileSystemLoader('resources/templates'), trim_blocks=True, lstrip_blocks=True)
-        template = env.get_template('template.txt')
+        return template.render(template_data)
 
-        #Render the template with data and print the output
-        return template.render(config_data)

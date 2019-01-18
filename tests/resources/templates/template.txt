@@ -4,8 +4,8 @@ auth --enableshadow --passalgo=sha512
 
 # Source intallation media
 install
-#url --url http://205.153.31.172/centos/7/os/x86_64
-#url --url="http://205.153.31.172/centos/7/os/x86_64"
+#url --url http://{{ yum_repo_ip }}/centos/7/os/x86_64
+#url --url="http://{{ yum_repo_ip }}/centos/7/os/x86_64"
 url --url="http://vault.centos.org/7.4.1708/os/x86_64/"
 # Use graphical install
 text
@@ -104,7 +104,7 @@ yum update -y
 
 # Updates IPMI
 cd /root
-wget http://205.153.31.172/centos/custom/IPMICFG-Linux_v1.20.zip
+wget http://{{ yum_repo_ip }}/centos/custom/IPMICFG-Linux_v1.20.zip
 unzip -u /root/IPMICFG-Linux_v1.20.zip
 cd IPMICFG-Linux_v1.20
 unzip -u IPMICFG-Linux_v1.20_build091228.zip
@@ -132,7 +132,13 @@ EOF
 
 #  *** END ATOM SECTION
 
+############################################################################
+# this should be loaded by SALT
+# END
+###########################################################################
+
 
 reboot
+{%- raw %}
 %end
-
+{% endraw %}

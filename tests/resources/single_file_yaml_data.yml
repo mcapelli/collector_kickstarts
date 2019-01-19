@@ -3,3 +3,6 @@ network_interface_name: eno1
 host_ip_address: 10.10.1.252
 host_default_gateway: 10.10.1.254
 host_subnet_mask: 255.255.255.0
+nameservers:
+    - 205.153.31.6
+    - 205.163.31.7

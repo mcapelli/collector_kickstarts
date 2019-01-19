@@ -1,6 +1,15 @@
 from typing import List, Dict, Any
 
 
+def encrypt_linux_password(unencrypted_password) -> str:
+    """given a string, encrypt and return in a format that can be put into shadow
+
+
+    """
+    import crypt
+    return crypt.crypt(unencrypted_password, crypt.mksalt(crypt.METHOD_SHA512))
+
+
 class FileUtility(object):
     """Common actions for text files based on file types
 

@@ -1,8 +1,10 @@
 yum_repo_ip: 205.153.31.172
+hostname: Americopy-001.inframax.ncare
 network_interface_name: eno1
 host_ip_address: 10.10.1.252
 host_default_gateway: 10.10.1.254
 host_subnet_mask: 255.255.255.0
+encrypted_password: $6$3t0WZfXSz/x7STQa$.UXWN7W8xgj3.wf4X7e6UiOPMRGkKm9jhfLSmIspZ9eQlAUrG.1GWEzqvABtn.kS4rPcQAfbZJXX8jJV55clm/
 nameservers:
     - 205.153.31.6
     - 205.163.31.7

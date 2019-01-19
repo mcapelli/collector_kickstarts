@@ -23,10 +23,10 @@ lang en_US.UTF-8
 
 # Network information
 network  --bootproto=static --device={{ network_interface_name }} --gateway={{ host_default_gateway }} --ip={{ host_ip_address }} --nameserver={{ nameservers[0] }} --netmask={{ host_subnet_mask }} --activate
-network  --hostname=Americopy-001.inframax.ncare
+network  --hostname={{ hostname }}
 
 # Root password
-rootpw --iscrypted $6$3t0WZfXSz/x7STQa$.UXWN7W8xgj3.wf4X7e6UiOPMRGkKm9jhfLSmIspZ9eQlAUrG.1GWEzqvABtn.kS4rPcQAfbZJXX8jJV55clm/
+rootpw --iscrypted {{ encrypted_password }}
 
 # System services
 services --enabled="chronyd"

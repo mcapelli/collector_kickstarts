@@ -1,2 +1,5 @@
 yum_repo_ip: 205.153.31.172
-ip_address: 10.10.1.252
+network_interface_name: eno1
+host_ip_address: 10.10.1.252
+host_default_gateway: 10.10.1.254
+host_subnet_mask: 255.255.255.0

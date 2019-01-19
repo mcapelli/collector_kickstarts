@@ -22,7 +22,7 @@ keyboard --vckeymap=us --xlayouts='us'
 lang en_US.UTF-8
 
 # Network information
-network  --bootproto=static --device=eno1 --gateway=10.10.1.254 --ip={{ ip_address }} --nameserver=205.153.31.6, --netmask=255.255.255.0 --activate
+network  --bootproto=static --device={{ network_interface_name }} --gateway={{ host_default_gateway }} --ip={{ host_ip_address }} --nameserver=205.153.31.6 --netmask={{ host_subnet_mask }} --activate
 network  --hostname=Americopy-001.inframax.ncare
 
 # Root password

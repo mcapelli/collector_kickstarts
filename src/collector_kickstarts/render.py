@@ -1,3 +1,6 @@
+from typing import List, Dict
+
+
 class Kickstart(object):
     """The summary line for a class docstring should fit on one line.
 
@@ -26,4 +29,21 @@ class Kickstart(object):
         template = env.get_template('kickstart_template.txt')
 
         return template.render(template_data)
+
+    @staticmethod
+    def render_files(template_data=None) -> List[str]:
+        """Render a list of file strings
+
+        iterate on a list of dicts and return a list of strings.  each of the return strings is the contents of a
+        kickstart file.
+        :type template_data: List[Dict[str, str]]
+
+        """
+        output_list = []
+        for data in template_data:
+            output_list.append(Kickstart.render_template_from_dict(data))
+        return output_list
+
+
+
 

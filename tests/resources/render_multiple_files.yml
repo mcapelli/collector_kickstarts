@@ -1,0 +1,31 @@
+-   yum_repo_ip: 205.153.31.172
+    hostname: first_host_name
+    network_interface_name: eno1
+    host_ip_address: 10.1.1.100
+    host_default_gateway: 10.1.1.1
+    host_subnet_mask: 255.255.255.0
+    encrypted_password: $6$3t0WZfXSz/x7STQa$.UXWN7W8xgj3.wf4X7e6UiOPMRGkKm9jhfLSmIspZ9eQlAUrG.1GWEzqvABtn.kS4rPcQAfbZJXX8jJV55clm/
+    nameservers:
+        - 205.153.31.6
+        - 205.163.31.7
+-   yum_repo_ip: 205.153.31.172
+    hostname: second_host_name
+    network_interface_name: eth0
+    host_ip_address: 10.2.2.100
+    host_default_gateway: 10.2.2.1
+    host_subnet_mask: 255.255.255.0
+    encrypted_password: $6$3t0WZfXSz/x7STQa$.UXWN7W8xgj3.wf4X7e6UiOPMRGkKm9jhfLSmIspZ9eQlAUrG.1GWEzqvABtn.kS4rPcQAfbZJXX8jJV55clm/
+    nameservers:
+        - 205.153.31.6
+        - 205.163.31.7
+
+-   yum_repo_ip: 205.153.31.172
+    hostname: third_host_name
+    network_interface_name: eth0
+    host_ip_address: 10.3.3.100
+    host_default_gateway: 10.3.3.1
+    host_subnet_mask: 255.255.255.0
+    encrypted_password: $6$3t0WZfXSz/x7STQa$.UXWN7W8xgj3.wf4X7e6UiOPMRGkKm9jhfLSmIspZ9eQlAUrG.1GWEzqvABtn.kS4rPcQAfbZJXX8jJV55clm/
+    nameservers:
+        - 205.153.31.6
+        - 205.163.31.7

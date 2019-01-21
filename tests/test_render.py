@@ -16,3 +16,13 @@ def test_single_template_output(resource_dir):
     config_data = config_file.get_yaml()
 
     assert contents == Kickstart.render_template_from_dict(template_data=config_data)
+
+
+def test_multi_template_output(resource_dir):
+    from collector_kickstarts.render import Kickstart
+    from collector_kickstarts.utility import FileUtility
+
+    config_file = FileUtility('/'.join([resource_dir, 'render_multiple_files.yml']))
+    config_data = config_file.get_yaml()
+
+    assert len(Kickstart.render_files(template_data=config_data)) == 3

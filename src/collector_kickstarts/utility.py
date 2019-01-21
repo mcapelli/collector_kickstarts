@@ -10,6 +10,20 @@ def encrypt_linux_password(unencrypted_password) -> str:
     return crypt.crypt(unencrypted_password, crypt.mksalt(crypt.METHOD_SHA512))
 
 
+def find_subdir(input_dir):
+    """Return the relative path of a directory
+
+    Used by test fixtures to find resource files regardless of where pytests is from from (project_root,
+    project_root/tests, etc). This didn't matter when i was just running pytests directly, but tox runs form teh
+    project dir so this fixes that problem
+    """
+    import os
+    for root, dirs, files in os.walk("."):
+        for d in dirs:
+            if d == input_dir:
+                return os.path.relpath(os.path.join(root, d), ".")
+
+
 class FileUtility(object):
     """Common actions for text files based on file types
 

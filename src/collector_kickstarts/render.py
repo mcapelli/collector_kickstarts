@@ -44,6 +44,13 @@ class Kickstart(object):
             output_list.append(Kickstart.render_template_from_dict(data))
         return output_list
 
+    @staticmethod
+    def create_kickstart_files(template_data):
+        # iterate over mulit-file yaml
+        # get the collector name and create a file for each
 
+        for collector_dict in template_data:
+            with open(collector_dict['hostname'] + '.ks', "a") as text_file:
+                text_file.write("Purchase Amount: %s" % 10)
 
 

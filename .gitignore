@@ -66,3 +66,7 @@ docs/_build
 
 # Mypy Cache
 .mypy_cache/
+
+
+#  ignore the generated kickstart file to keep them out
+*.ks

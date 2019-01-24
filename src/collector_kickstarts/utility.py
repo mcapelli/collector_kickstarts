@@ -1,7 +1,7 @@
 from typing import List, Dict, Any
 
 
-def encrypt_linux_password(unencrypted_password) -> str:
+def encrypt_linux_password(unencrypted_password: str) -> str:
     """given a string, encrypt and return in a format that can be put into shadow
 
 

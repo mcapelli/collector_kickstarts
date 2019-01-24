@@ -29,16 +29,15 @@ def test_multi_template_output(resource_dir):
     assert len(Kickstart.render_files(template_data=config_data)) == 3
 
 
-def test_create_kickstart_files(resource_dir):
+def test_create_kickstart_files(resource_dir, tmpdir):
     import os
 
     # get data from multi yaml file
     fu = FileUtility('/'.join([resource_dir, 'render_multiple_files.yml']))
     yaml_data = fu.get_yaml()
 
-    Kickstart.create_kickstart_files(yaml_data)
+    Kickstart.create_kickstart_files(yaml_data, tmpdir)
 
-    assert os.path.exists('first_host_name.ks')
-    assert os.path.exists('second_host_name.ks')
-    assert os.path.exists('third_host_name.ks')
-
+    assert os.path.exists('/'.join([tmpdir.dirname, 'first_host_name.ks']))
+    assert os.path.exists('/'.join([tmpdir.dirname, 'second_host_name.ks']))
+    assert os.path.exists('/'.join([tmpdir.dirname, 'third_host_name.ks']))

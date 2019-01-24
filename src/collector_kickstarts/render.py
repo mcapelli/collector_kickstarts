@@ -45,12 +45,20 @@ class Kickstart(object):
         return output_list
 
     @staticmethod
-    def create_kickstart_files(template_data):
+    def create_kickstart_files(template_data, output_dir):
+        """
+        Hown does this method work?
+        template data = is a list of the dictionary
+        iterate through the list of dictionaries and create an
+        ks file for each dictionary entry . ks is writen in the
+        output_dir
+        """
+
         # iterate over mulit-file yaml
         # get the collector name and create a file for each
 
         for collector_dict in template_data:
-            with open(collector_dict['hostname'] + '.ks', "a") as text_file:
+            with open('/'.join([output_dir.dirname, collector_dict['hostname'] + '.ks']), "w") as text_file:
                 text_file.write("Purchase Amount: %s" % 10)
 
 

@@ -47,8 +47,8 @@ class Kickstart(object):
     @staticmethod
     def create_kickstart_files(template_data, output_dir):
         """
-        Hown does this method work?
-        template data = is a list of the dictionary
+        How does this method work?
+        template data = is a list of the dictionaries
         iterate through the list of dictionaries and create an
         ks file for each dictionary entry . ks is writen in the
         output_dir
@@ -59,6 +59,6 @@ class Kickstart(object):
 
         for collector_dict in template_data:
             with open('/'.join([output_dir.dirname, collector_dict['hostname'] + '.ks']), "w") as text_file:
-                text_file.write("Purchase Amount: %s" % 10)
+                text_file.write(Kickstart.render_template_from_dict(template_data=collector_dict))
 
 

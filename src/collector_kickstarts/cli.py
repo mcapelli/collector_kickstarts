@@ -18,6 +18,13 @@ import click
 
 
 @click.command()
-@click.argument('names', nargs=-1)
-def main(names):
-    click.echo(repr(names))
+@click.argument('data_file')
+@click.argument('output_path')
+def main(data_file, output_path):
+    from collector_kickstarts.render import Kickstart
+    from collector_kickstarts.utility import FileUtility
+    fu = FileUtility(data_file)
+    yaml_data = fu.get_yaml()
+    Kickstart.create_kickstart_files(yaml_data, output_path)
+
+    click.echo('()')

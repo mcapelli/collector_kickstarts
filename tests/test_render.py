@@ -36,7 +36,7 @@ def test_create_kickstart_files(resource_dir, tmpdir):
     fu = FileUtility('/'.join([resource_dir, 'render_multiple_files.yml']))
     yaml_data = fu.get_yaml()
 
-    Kickstart.create_kickstart_files(yaml_data, tmpdir)
+    Kickstart.create_kickstart_files(yaml_data, tmpdir.dirname)
 
     assert os.path.exists('/'.join([tmpdir.dirname, 'first_host_name.ks']))
     assert os.path.exists('/'.join([tmpdir.dirname, 'second_host_name.ks']))

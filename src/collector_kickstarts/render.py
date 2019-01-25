@@ -58,7 +58,7 @@ class Kickstart(object):
         # get the collector name and create a file for each
 
         for collector_dict in template_data:
-            with open('/'.join([output_dir.dirname, collector_dict['hostname'] + '.ks']), "w") as text_file:
+            with open('/'.join([output_dir, collector_dict['hostname'] + '.ks']), "w") as text_file:
                 text_file.write(Kickstart.render_template_from_dict(template_data=collector_dict))
 
 

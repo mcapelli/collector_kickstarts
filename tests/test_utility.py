@@ -10,13 +10,14 @@ def resource_dir():
 
 def test_get_yaml(resource_dir):
 
-    fu = FileUtility('/'.join([resource_dir, 'file_utility_yaml_test.yml']))
+    fu = FileUtility('/'.join([resource_dir, 'render_multiple_files.yml']))
 
     yaml_data = fu.get_yaml()
     assert isinstance(yaml_data, list)
-    assert len(yaml_data) == 2
-    assert len(yaml_data[0]) == 2
-    assert len(yaml_data[1]) == 2
+    assert len(yaml_data) == 3
+    assert len(yaml_data[0]) == 8
+    assert len(yaml_data[1]) == 8
+    assert len(yaml_data[2]) == 8
 
 
 def test_get_file_string(resource_dir):

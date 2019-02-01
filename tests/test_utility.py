@@ -1,5 +1,6 @@
 import pytest
 from collector_kickstarts.utility import FileUtility
+import yaml
 
 
 @pytest.fixture()
@@ -48,3 +49,67 @@ def test_get_csv_data(resource_dir):
     assert data[1]['last_name'] == 'syer'
     assert data[1]['age'] == '32'
 
+def test_merge_config_data(resource_dir):
+    from collector_kickstarts.utility import merge_config_data
+    config_string = '''
+    yum_repo_ip: 44.44.44.44
+    network_interface_name: eth55
+    encrypted_password:  SOME_ENCRYPTED-PASSWORD
+    nameservers:
+        - 8.8.8.8
+        - 8.8.4.4
+    '''
+    config_data = yaml.load(config_string)
+
+    partial_string = '''
+-   hostname: first_host_name
+    host_ip_address: 10.1.1.100
+    host_default_gateway: 10.1.1.1
+    host_subnet_mask: 255.255.255.0
+-   hostname: second_host_name
+    host_ip_address: 10.2.2.100
+    host_default_gateway: 10.2.2.1
+    host_subnet_mask: 255.255.255.0
+-   hostname: third_host_name
+    host_ip_address: 10.3.3.100
+    host_default_gateway: 10.3.3.1
+    host_subnet_mask: 255.255.255.0
+
+    '''
+    partial_data = yaml.load(partial_string)
+
+    expected_data_string = '''
+-   yum_repo_ip: 44.44.44.44
+    hostname: first_host_name
+    network_interface_name: eth55
+    host_ip_address: 10.1.1.100
+    host_default_gateway: 10.1.1.1
+    host_subnet_mask: 255.255.255.0
+    encrypted_password: SOME_ENCRYPTED-PASSWORD
+    nameservers:
+        - 8.8.8.8
+        - 8.8.4.4
+-   yum_repo_ip: 44.44.44.44
+    hostname: second_host_name
+    network_interface_name: eth55
+    host_ip_address: 10.2.2.100
+    host_default_gateway: 10.2.2.1
+    host_subnet_mask: 255.255.255.0
+    encrypted_password: SOME_ENCRYPTED-PASSWORD
+    nameservers:
+        - 8.8.8.8
+        - 8.8.4.4
+-   yum_repo_ip: 44.44.44.44
+    hostname: third_host_name
+    network_interface_name: eth55
+    host_ip_address: 10.3.3.100
+    host_default_gateway: 10.3.3.1
+    host_subnet_mask: 255.255.255.0
+    encrypted_password: SOME_ENCRYPTED-PASSWORD
+    nameservers:
+        - 8.8.8.8
+        - 8.8.4.4
+
+'''
+    expected_data = yaml.load(expected_data_string)
+    assert merge_config_data(config_data, partial_data) == expected_data

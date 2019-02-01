@@ -18,13 +18,21 @@ import click
 
 
 @click.command()
+@click.argument('config_file')
 @click.argument('data_file')
 @click.argument('output_path')
-def main(data_file, output_path):
+def main(config_file, data_file, output_path):
     from collector_kickstarts.render import Kickstart
-    from collector_kickstarts.utility import FileUtility
-    fu = FileUtility(data_file)
-    yaml_data = fu.get_yaml()
-    Kickstart.create_kickstart_files(yaml_data, output_path)
+    from collector_kickstarts.utility import FileUtility, merge_config_data
 
-    click.echo('()')
+
+    cf = FileUtility(config_file)
+    config_data = cf.get_yaml()
+
+    pf = FileUtility(data_file)
+    partial_data = pf.get_yaml()
+
+    template_data = merge_config_data(config_data, partial_data)
+    Kickstart.create_kickstart_files(template_data, output_path)
+
+    click.echo('DDD')

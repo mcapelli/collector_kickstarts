@@ -1,0 +1,6 @@
+yum_repo_ip: 44.44.44.44
+network_interface_name: eth55
+encrypted_password:  SOME_ENCRYPTED-PASSWORD
+nameservers:
+    - 8.8.8.8
+    - 8.8.4.4

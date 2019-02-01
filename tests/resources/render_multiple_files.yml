@@ -18,7 +18,6 @@
     nameservers:
         - 205.153.31.6
         - 205.163.31.7
-
 -   yum_repo_ip: 205.153.31.172
     hostname: third_host_name
     network_interface_name: eth0

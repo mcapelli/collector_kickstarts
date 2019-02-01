@@ -1,6 +1,16 @@
 from typing import List, Dict, Any
 
 
+def merge_config_data(config_data, partial_template):
+    result_list = []  # type: List[Dict[str, Any]]
+    for item in partial_template:
+        merged = item.copy()
+        merged.update(config_data)
+        result_list.append(merged)
+
+    return result_list
+
+
 def encrypt_linux_password(unencrypted_password: str) -> str:
     """given a string, encrypt and return in a format that can be put into shadow
 

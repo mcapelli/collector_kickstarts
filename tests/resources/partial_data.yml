@@ -1,0 +1,12 @@
+-   hostname: first_host_name
+    host_ip_address: 10.1.1.100
+    host_default_gateway: 10.1.1.1
+    host_subnet_mask: 255.255.255.0
+-   hostname: second_host_name
+    host_ip_address: 10.2.2.100
+    host_default_gateway: 10.2.2.1
+    host_subnet_mask: 255.255.255.0
+-   hostname: third_host_name
+    host_ip_address: 10.3.3.100
+    host_default_gateway: 10.3.3.1
+    host_subnet_mask: 255.255.255.0

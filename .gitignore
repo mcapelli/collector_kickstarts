@@ -59,7 +59,7 @@ docs/_build
 .ve
 .env
 .cache
-.pytest
+.pytest4
 .bootstrap
 .appveyor.token
 *.bak

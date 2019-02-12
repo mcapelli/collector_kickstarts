@@ -70,3 +70,4 @@ docs/_build
 
 #  ignore the generated kickstart file to keep them out
 *.ks
+collector_data.yml

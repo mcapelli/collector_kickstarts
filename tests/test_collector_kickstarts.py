@@ -11,6 +11,7 @@ def test_main(tmpdir):
                                   tmpdir.dirname])
 
     assert result.output == 'DDD\n'
+#    assert result.output == ''
     assert result.exit_code == 0
 
 

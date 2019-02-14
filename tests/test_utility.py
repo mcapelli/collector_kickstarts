@@ -113,3 +113,10 @@ def test_merge_config_data(resource_dir):
 '''
     expected_data = yaml.load(expected_data_string)
     assert merge_config_data(config_data, partial_data) == expected_data
+
+
+def test_merge_config_data():
+    from collector_kickstarts.utility import reformat_host_name
+    input_string = "some_host_name.domain_name.com"
+    expected = "PROD01-some-host-name"
+    assert reformat_host_name(input_string) == expected

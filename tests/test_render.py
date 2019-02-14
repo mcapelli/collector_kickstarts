@@ -38,6 +38,6 @@ def test_create_kickstart_files(resource_dir, tmpdir):
 
     Kickstart.create_kickstart_files(yaml_data, tmpdir.dirname)
 
-    assert os.path.exists('/'.join([tmpdir.dirname, 'first_host_name.ks']))
-    assert os.path.exists('/'.join([tmpdir.dirname, 'second_host_name.ks']))
-    assert os.path.exists('/'.join([tmpdir.dirname, 'third_host_name.ks']))
+    assert os.path.exists('/'.join([tmpdir.dirname, 'PROD01-ZDEL-FIRST_HOST_NAME.ks']))
+    assert os.path.exists('/'.join([tmpdir.dirname, 'PROD01-ZDEL-SECOND_HOST_NAME.ks']))
+    assert os.path.exists('/'.join([tmpdir.dirname, 'PROD01-ZDEL-THIRD_HOST_NAME.ks']))

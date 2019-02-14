@@ -117,6 +117,6 @@ def test_merge_config_data(resource_dir):
 
 def test_merge_config_data():
     from collector_kickstarts.utility import reformat_host_name
-    input_string = "some_host_name.domain_name.com"
-    expected = "PROD01-some-host-name"
+    input_string = "Crane-002.inframax.ncare"
+    expected = "PROD01-ZDEL-CRANE-002"
     assert reformat_host_name(input_string) == expected

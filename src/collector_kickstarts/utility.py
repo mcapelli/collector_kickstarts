@@ -1,6 +1,24 @@
 from typing import List, Dict, Any
 
 
+def reformat_host_name(input_hostname):
+    """
+    convert input_hostname to dns-safe hostname with prpper info
+     - upper case the input
+     - strip domain stuff from the end
+     - prepend  <CLUSTER_TAG>-ZDEL-
+    :param str input_hostname: ex. some_host_name.domain.com
+    :rtype: str  #  reformatted hostnameex. PROD01-ZDEL-some_host_name
+
+    Example:
+    Crane-002.inframax.ncare
+    PROD01-ZDEL-CRANE-001
+
+    """
+    short_hostname = input_hostname.split('.')[0]
+    return 'PROD01-ZDEL-' + short_hostname.upper()
+
+
 def merge_config_data(config_data, partial_template):
     result_list = []  # type: List[Dict[str, Any]]
     for item in partial_template:

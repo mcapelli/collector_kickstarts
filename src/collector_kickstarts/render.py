@@ -53,11 +53,12 @@ class Kickstart(object):
         ks file for each dictionary entry . ks is writen in the
         output_dir
         """
-
+        from collector_kickstarts.utility import reformat_host_name
         # iterate over mulit-file yaml
         # get the collector name and create a file for each
 
         for collector_dict in template_data:
+            collector_dict['hostname'] = reformat_host_name(collector_dict['hostname'])
             with open('/'.join([output_dir, collector_dict['hostname'] + '.ks']), "w") as text_file:
                 text_file.write(Kickstart.render_template_from_dict(template_data=collector_dict))
 

@@ -10,7 +10,7 @@ def test_main(tmpdir):
                                   'resources/partial_data.yml',
                                   tmpdir.dirname])
 
-    assert result.output == 'DDD\n'
+    assert result.output == '\n'
 #    assert result.output == ''
     assert result.exit_code == 0
 

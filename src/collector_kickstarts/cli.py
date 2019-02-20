@@ -35,4 +35,4 @@ def main(config_file, data_file, output_path):
     template_data = merge_config_data(config_data, partial_data)
     Kickstart.create_kickstart_files(template_data, output_path)
 
-    click.echo('DDD')
+    click.echo('on')

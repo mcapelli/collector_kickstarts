@@ -7,7 +7,7 @@ install
 #url --url http://{{ yum_repo_ip }}/centos/7/os/x86_64
 #url --url="http://{{ yum_repo_ip }}/centos/7/os/x86_64"
 url --url="http://vault.centos.org/7.4.1708/os/x86_64/"
-harddrive --dir=/ --partition=sda1
+#harddrive --dir=/ --partition=sda1
 # Use graphical install
 text
 
@@ -63,7 +63,7 @@ chrony
 kexec-tools
 keyutils
 fipscheck
-yum-priorities
+#yum-priorities
 screen
 net-snmp
 net-snmp-utils
